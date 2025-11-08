@@ -1,0 +1,11 @@
+TargetUser,MovieID,Title,PredictedRating
+1001,608,Fargo (1996),5.0000
+1001,594,Snow White and the Seven Dwarfs (1937),5.0000
+1001,235,Ed Wood (1994),5.0000
+1001,1,Toy Story (1995),4.3418
+1001,527,Schindler's List (1993),4.3283
+1001,349,Clear and Present Danger (1994),4.2432
+1001,318,"Shawshank Redemption, The (1994)",4.1641
+1001,590,Dances with Wolves (1990),4.1158
+1001,474,In the Line of Fire (1993),4.0073
+1001,141,"Birdcage, The (1996)",4.0000
