@@ -33,7 +33,7 @@ type Tag struct {
 func main() {
 	fmt.Println("Iniciando análisis avanzado del MovieLens limpio...")
 
-	os.MkdirAll("analisis", os.ModePerm)
+	os.MkdirAll("analysis", os.ModePerm)
 
 	ratings := loadRatings("data/clean/ratings.csv")
 	movies := loadMovies("data/clean/movies.csv")
@@ -46,7 +46,7 @@ func main() {
 	analyzeGenres(ratings, movies)
 	generateUserMovieMatrix(ratings, 1000)
 
-	fmt.Println("Análisis completo. Archivos guardados en carpeta /analisis")
+	fmt.Println("Análisis completo. Archivos guardados en carpeta /analysis")
 }
 
 // ---------------------- CARGA DE CSV ----------------------
@@ -171,7 +171,7 @@ func analyzeRatings(ratings []Rating) {
 
 	wg.Wait()
 
-	saveDistribution(counts, "analisis/analysis_rating_distribution.csv")
+	saveDistribution(counts, "analysis/rating_distribution.csv")
 	saveSummary(userSet, movieSet, len(ratings))
 }
 
@@ -188,7 +188,7 @@ func saveDistribution(dist map[float64]int, filename string) {
 }
 
 func saveSummary(users, movies map[string]bool, total int) {
-	file, _ := os.Create("analisis/analysis_summary.csv")
+	file, _ := os.Create("analysis/summary.csv")
 	defer file.Close()
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
@@ -225,7 +225,7 @@ func analyzeTopMovies(ratings []Rating, movies map[string]Movie) {
 		}
 	}
 
-	file, _ := os.Create("analisis/analysis_top_movies.csv")
+	file, _ := os.Create("analysis/top_movies.csv")
 	defer file.Close()
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
@@ -248,7 +248,7 @@ func analyzeTags(tags []Tag) {
 		movieCount[t.MovieID]++
 	}
 
-	file, _ := os.Create("analisis/analysis_tags_stats.csv")
+	file, _ := os.Create("analysis/tags_stats.csv")
 	defer file.Close()
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
@@ -282,7 +282,7 @@ func analyzeMovieAverages(ratings []Rating, movies map[string]Movie) {
 		avg[r.MovieID].count++
 	}
 
-	file, _ := os.Create("analisis/analysis_movie_avg.csv")
+	file, _ := os.Create("analysis/movie_avg.csv")
 	defer file.Close()
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
@@ -308,7 +308,7 @@ func analyzeMovieAverages(ratings []Rating, movies map[string]Movie) {
 		}
 	}
 
-	topFile, _ := os.Create("analisis/analysis_best_movies.csv")
+	topFile, _ := os.Create("analysis/best_movies.csv")
 	defer topFile.Close()
 	topWriter := csv.NewWriter(topFile)
 	defer topWriter.Flush()
@@ -347,7 +347,7 @@ func analyzeGenres(ratings []Rating, movies map[string]Movie) {
 	}
 
 	// Guardar conteo
-	countFile, _ := os.Create("analisis/analysis_genres_count.csv")
+	countFile, _ := os.Create("analysis/genres_count.csv")
 	defer countFile.Close()
 	countWriter := csv.NewWriter(countFile)
 	defer countWriter.Flush()
@@ -357,7 +357,7 @@ func analyzeGenres(ratings []Rating, movies map[string]Movie) {
 	}
 
 	// Guardar promedios
-	avgFile, _ := os.Create("analisis/analysis_genres_avg.csv")
+	avgFile, _ := os.Create("analysis/genres_avg.csv")
 	defer avgFile.Close()
 	avgWriter := csv.NewWriter(avgFile)
 	defer avgWriter.Flush()
@@ -371,7 +371,7 @@ func analyzeGenres(ratings []Rating, movies map[string]Movie) {
 // ---------------------- MATRIZ USUARIO–PELÍCULA ----------------------
 
 func generateUserMovieMatrix(ratings []Rating, maxUsers int) {
-	file, _ := os.Create("analisis/matrix_user_movie.csv")
+	file, _ := os.Create("analysis/matrix_user_movie.csv")
 	defer file.Close()
 
 	writer := csv.NewWriter(file)
